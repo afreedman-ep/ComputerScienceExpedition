@@ -1,0 +1,42 @@
+<h3>Editing id: {{bot.id}}
+  <a class="btn btn-info" href="/bots/dashboard/{{bot.id}}">Back</a>
+  <a class="btn btn-primary" onclick="save();">Save</a>
+  {{> run}}
+</h3>
+
+<p class="messages" style="display:none"></p>
+
+{{> editor value=bot.code}}
+
+<script>
+  function save() {
+    $.ajax({
+      type: 'POST',
+      data: {code: editor.getValue(), id: "{{bot.id}}" }
+    }).done(function() {
+      console.log('saved');
+      $('.messages').text('Successfully saved');
+      $('.messages').slideDown(function() {
+        setTimeout(function() {
+          $('.messages').slideUp();
+        }, 2000);
+      });
+    });
+  }
+
+  editor.commands.addCommand({
+    name: 'save',
+    bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+    exec: function(editor) {
+      save();
+    }
+  });
+
+  editor.commands.addCommand({
+    name: 'run',
+    bindKey: {win: 'Ctrl-Enter', mac: 'Command-Enter'},
+    exec: function(editor) {
+      $('#runForm').submit();
+    }
+  })
+</script>

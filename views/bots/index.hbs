@@ -1,0 +1,30 @@
+{{#if user.admin}}
+  <h1 style="text-align:center">Showing All Bots</h1>
+{{else}}
+  <h1 style="text-align:center">Showing Bots</h1>
+{{/if}}
+
+{{#if bots}}
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Runs</th>
+    <th>ID</th>
+    <th>Owner</th>
+  </tr>
+  {{#each bots}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{runs}}</td>
+      <td><a href="/bots/{{id}}">{{id}}</a></td>
+      <td><b>{{owner.username}}</b></td>
+    </tr>
+  {{/each}}
+  <tr>
+    <td colspan="4" style="text-align:center"><a href="/bots/create" class="btn btn-success">Create Bot</a></td>
+  </tr>
+</table>
+{{else}}
+  <h4>Looks like you don't have any bots.</h4>
+  <h5>You can create a bot <a href="/bots/create">here</a></h5>
+{{/if}}

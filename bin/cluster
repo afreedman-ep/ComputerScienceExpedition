@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+var cluster = require('cluster');
+var debug = require('debug')('app:cluster');
+
+if(cluster.isMaster) {
+  var clusters = 0;
+  var cpuCount = require('os').cpus().length;
+  for(var i=0; i < cpuCount; i++) {
+    cluster.fork();
+    clusters++;
+    debug('clustered ' + clusters + ' times');
+  }
+  cluster.on('exit', function(worker) {
+    debug('Worker #' + worker.id + ' died.');
+    cluster.fork();
+    clusters++;
+    debug('clustered ' + clusters + ' times');
+  });
+} else {
+  require('./www').set('worker', cluster.worker.id);
+}
+
+module.exports = cluster;

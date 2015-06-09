@@ -1,0 +1,23 @@
+<h2>Log In</h2>
+
+<form method="post">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input id="username" class="form-control" type="text" name="username" placeholder="Please enter your username"></input>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" class="form-control" type="password" name="password" placeholder="Please enter your password"></input>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-default">Log In</button>
+  </div>
+</form>
+
+<script>
+  $('form').on('submit', function(e) {
+    e.preventDefault();
+    $('input[name=username]').val($('input[name=username]').val().toLowerCase());
+    this.submit();
+  });
+</script>

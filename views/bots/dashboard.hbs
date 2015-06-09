@@ -1,0 +1,20 @@
+<h1>The dashboard for id: {{bot.id}}</h1>
+
+<a href="/bots/edit/{{bot.id}}" class="btn btn-primary">Edit</a>
+
+{{> run}}
+
+<p>name: {{bot.name}}</p>
+<p>runs: {{bot.runs}}</p>
+
+<p>code: <pre><code id="code">{{bot.code}}</code></pre></p>
+
+<script>
+  hljs.initHighlightingOnLoad();
+
+  $('#runForm').on('submit', function(ev) {
+    ev.preventDefault();
+    $('.code').val($('#code').val());
+    this.submit();
+  });
+</script>

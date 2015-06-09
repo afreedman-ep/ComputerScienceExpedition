@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="http://cdn.smtcs.rocks/bs/bs.css">
+    <link rel="stylesheet" href="http://cdn.smtcs.rocks/hl/monokai.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+    <script src="http://cdn.smtcs.rocks/jq/2.js"></script>
+    <script src="http://cdn.smtcs.rocks/bs/bs.js"></script>
+    <script src="http://cdn.smtcs.rocks/hl/hl.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Vindinium</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            {{#if bot}}
+              <li class="active"><a href="/bots">Bots</a></li>
+            {{else}}
+              <li><a href="/bots">Bots</a></li>
+            {{/if}}
+            {{#if user.admin}}
+              <li><a href="/users">Users</a></li>
+              {{#if pid}}
+                <p class="navbar-text">PID: {{pid}}</p>
+              {{/if}}
+              {{#if worker}}
+                <p class="navbar-text">Worker: {{worker.id}}/{{worker.count}}</p>
+              {{/if}}
+            {{/if}}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {{#if login}}
+              <li class="dropdown">
+                <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+                  {{user.username}} <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/logout">Log Out</a></li>
+                  </ul>
+              </li>
+            {{else}}
+              <li><a href="/register">Register</a></li>
+              <li><a href="/login">Login</a></li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      {{{body}}}
+    </div>
+  </body>
+</html>

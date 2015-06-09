@@ -1,0 +1,9 @@
+<div id="editor">{{value}}</div>
+
+<script>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setMode("ace/mode/javascript");
+  editor.getSession().setTabSize(2);
+  editor.getSession().setUseSoftTabs(true);
+</script>
